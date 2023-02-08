@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://www.plcopen.org/xml/tc6_0200">
-  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP17" creationDateTime="2022-05-25T10:34:38.2148702" />
-  <contentHeader name="update_config.project" modificationDateTime="2022-05-25T10:34:00.5079916">
+  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP17" creationDateTime="2023-01-23T09:36:48.647564" />
+  <contentHeader name="update_config.project" modificationDateTime="2023-01-23T09:36:24.8196113">
     <coordinateInfo>
       <fbd>
         <scaling x="1" y="1" />
@@ -105,6 +105,16 @@
                         <derived name="Pose2D" />
                       </type>
                     </variable>
+                    <variable name="varDeloc">
+                      <type>
+                        <LREAL />
+                      </type>
+                    </variable>
+                    <variable name="varSeq">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
                   </localVars>
                 </interface>
                 <body>
@@ -123,6 +133,10 @@ robin.write('mission', station);
 robin.write('encoders_data',StructEncoder);
 
 robin.read('amcl_pose_2d', globalPosition);
+
+robin.read('inliers',varDeloc);
+
+robin.write('sequence',varSeq);
 
 
 
