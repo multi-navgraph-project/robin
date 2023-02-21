@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://www.plcopen.org/xml/tc6_0200">
-  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP17" creationDateTime="2023-01-23T09:36:48.647564" />
-  <contentHeader name="update_config.project" modificationDateTime="2023-01-23T09:36:24.8196113">
+  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP17" creationDateTime="2023-02-15T17:04:06.0980611" />
+  <contentHeader name="update_config.project" modificationDateTime="2023-02-15T16:26:11.9249586">
     <coordinateInfo>
       <fbd>
         <scaling x="1" y="1" />
@@ -66,6 +66,35 @@
                 <addData />
               </dataType>
             </data>
+            <data name="http://www.3s-software.com/plcopenxml/datatype" handleUnknown="implementation">
+              <dataType name="MotorsInfo">
+                <baseType>
+                  <struct>
+                    <variable name="TractionCurrent">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="SteeringCurrent">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
+                    <variable name="TractionVoltage">
+                      <type>
+                        <UINT />
+                      </type>
+                    </variable>
+                    <variable name="SteeringVoltage">
+                      <type>
+                        <UINT />
+                      </type>
+                    </variable>
+                  </struct>
+                </baseType>
+                <addData />
+              </dataType>
+            </data>
             <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
               <pou name="ROS_PRG" pouType="program">
                 <interface>
@@ -98,6 +127,11 @@
                     <variable name="StructEncoder">
                       <type>
                         <derived name="EncoderData" />
+                      </type>
+                    </variable>
+                    <variable name="StructMotorsInfo">
+                      <type>
+                        <derived name="MotorsInfo" />
                       </type>
                     </variable>
                     <variable name="globalPosition">
@@ -137,6 +171,9 @@ robin.read('amcl_pose_2d', globalPosition);
 robin.read('inliers',varDeloc);
 
 robin.write('sequence',varSeq);
+
+robin.write('motors_info',StructMotorsInfo);
+
 
 
 
