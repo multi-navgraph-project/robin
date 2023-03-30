@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://www.plcopen.org/xml/tc6_0200">
-  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP17" creationDateTime="2023-02-15T17:04:06.0980611" />
-  <contentHeader name="update_config.project" modificationDateTime="2023-02-15T16:26:11.9249586">
+  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP17" creationDateTime="2023-03-22T16:33:26.1306931" />
+  <contentHeader name="update_config.project" modificationDateTime="2023-03-22T16:32:50.1773877">
     <coordinateInfo>
       <fbd>
         <scaling x="1" y="1" />
@@ -149,6 +149,11 @@
                         <INT />
                       </type>
                     </variable>
+                    <variable name="varSpeedlimit">
+                      <type>
+                        <INT />
+                      </type>
+                    </variable>
                   </localVars>
                 </interface>
                 <body>
@@ -173,6 +178,8 @@ robin.read('inliers',varDeloc);
 robin.write('sequence',varSeq);
 
 robin.write('motors_info',StructMotorsInfo);
+
+robin.write('speed_limit',varSpeedlimit);
 
 
 
