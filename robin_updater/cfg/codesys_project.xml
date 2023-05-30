@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://www.plcopen.org/xml/tc6_0200">
-  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP17" creationDateTime="2023-03-22T16:33:26.1306931" />
-  <contentHeader name="update_config.project" modificationDateTime="2023-03-22T16:32:50.1773877">
+  <fileHeader companyName="" productName="CODESYS" productVersion="CODESYS V3.5 SP17" creationDateTime="2023-05-29T14:02:38.7286755" />
+  <contentHeader name="AGV_PL_UPDATE_CONFIG.project" modificationDateTime="2023-05-29T14:02:26.84019">
     <coordinateInfo>
       <fbd>
         <scaling x="1" y="1" />
@@ -95,6 +95,25 @@
                 <addData />
               </dataType>
             </data>
+            <data name="http://www.3s-software.com/plcopenxml/datatype" handleUnknown="implementation">
+              <dataType name="BatteryInfo">
+                <baseType>
+                  <struct>
+                    <variable name="level">
+                      <type>
+                        <UINT />
+                      </type>
+                    </variable>
+                    <variable name="is_charged">
+                      <type>
+                        <BOOL />
+                      </type>
+                    </variable>
+                  </struct>
+                </baseType>
+                <addData />
+              </dataType>
+            </data>
             <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
               <pou name="ROS_PRG" pouType="program">
                 <interface>
@@ -154,6 +173,11 @@
                         <INT />
                       </type>
                     </variable>
+                    <variable name="StructBatteryInfo">
+                      <type>
+                        <derived name="BatteryInfo" />
+                      </type>
+                    </variable>
                   </localVars>
                 </interface>
                 <body>
@@ -161,7 +185,7 @@
                     <xhtml xmlns="http://www.w3.org/1999/xhtml">// instancing Robin class
 robin();
 
-robin.read('cmd_vel', VITESSE);
+robin.read('smoothed_cmd_vel', VITESSE);
 
 robin.write('odom_carlike',Odom);
 
@@ -180,6 +204,9 @@ robin.write('sequence',varSeq);
 robin.write('motors_info',StructMotorsInfo);
 
 robin.write('speed_limit',varSpeedlimit);
+
+robin.write('battery_state',StructBatteryInfo);
+
 
 
 
