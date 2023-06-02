@@ -59,7 +59,18 @@ void RobinPublisher<T1, T2>::publish()
   semaphore_.wait();
   read();
   semaphore_.post();
-  publisher_.publish(msg_);
+  
+  if (!first)
+  {
+    old_msg_ = msg_;
+    first = true;
+  }
+  else if (old_msg_ != msg_)
+  {
+    publisher_.publish(msg_);
+    old_msg_ = msg_;
+  }
+  
 }
 // reads data from shared memory
 template <typename T1, typename T2>
